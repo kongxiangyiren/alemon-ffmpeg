@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import download from 'ffmpeg-download';
+import download from 'alemon-ffmpeg';
 import ffmpeg from 'fluent-ffmpeg';
 async function run() {
   // 下载ffmpeg

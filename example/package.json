@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ffmpeg-download": "file:..",
+    "alemon-ffmpeg": "file:..",
     "fluent-ffmpeg": "^2.1.2"
   },
   "devDependencies": {

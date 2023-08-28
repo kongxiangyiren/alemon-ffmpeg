@@ -14,7 +14,7 @@
   "directories": {
     "example": "example"
   },
-  "name": "ffmpeg-download",
+  "name": "alemon-ffmpeg",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./types/index.d.ts",
@@ -24,13 +24,13 @@
     "./types"
   ],
   "author": "空巷一人",
-  "repository": "https://github.com/kongxiangyiren/ffmpeg-download.git",
-  "homepage": "https://github.com/kongxiangyiren/ffmpeg-download#readme",
+  "repository": "https://github.com/kongxiangyiren/alemon-ffmpeg.git",
+  "homepage": "https://github.com/kongxiangyiren/alemon-ffmpeg#readme",
   "bugs": {
-    "url": "https://github.com/kongxiangyiren/ffmpeg-download/issues"
+    "url": "https://github.com/kongxiangyiren/alemon-ffmpeg/issues"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://registry.npmjs.com"
   },
   "keywords": [
     "ffmpeg"

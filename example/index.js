@@ -1,4 +1,4 @@
-const download = require('ffmpeg-download');
+const download = require('alemon-ffmpeg');
 const ffmpeg = require('fluent-ffmpeg');
 const {execSync}=require('child_process')
 
