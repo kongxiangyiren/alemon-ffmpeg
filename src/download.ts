@@ -6,53 +6,53 @@ import axios from 'axios';
 const AddPATH: string[] = [];
 function download() {
   return new Promise(async (resolve, reject) => {
-    // let ffmpeg: string | undefined;
-    // try {
-    //   ffmpeg = execSync('ffmpeg -version', {
-    //     encoding: 'utf-8',
-    //     stdio: 'ignore'
-    //   });
-    // } catch (error) {
-    //   undefined;
-    // }
+    let ffmpeg: string | undefined;
+    try {
+      ffmpeg = execSync('ffmpeg -version', {
+        encoding: 'utf-8',
+        stdio: 'ignore'
+      });
+    } catch (error) {
+      undefined;
+    }
 
-    // if (!ffmpeg) {
-    //   const ffmpegPath = join(
-    //     homedir(),
-    //     '.cache',
-    //     'ffmpeg',
-    //     `ffmpeg${process.platform === 'win32' ? '.exe' : ''}`
-    //   );
-    //   const platform =
-    //     process.platform == 'android' ? 'linux' : process.platform;
-    //   if (!existsSync(ffmpegPath)) {
-    //     console.log('开始下载ffmpeg');
-    //     mkdirSync(dirname(ffmpegPath), { recursive: true });
+    if (!ffmpeg) {
+      const ffmpegPath = join(
+        homedir(),
+        '.cache',
+        'ffmpeg',
+        `ffmpeg${process.platform === 'win32' ? '.exe' : ''}`
+      );
+      const platform =
+        process.platform == 'android' ? 'linux' : process.platform;
+      if (!existsSync(ffmpegPath)) {
+        console.log('开始下载ffmpeg');
+        mkdirSync(dirname(ffmpegPath), { recursive: true });
 
-    //     const res = await axios
-    //       .get(
-    //         `https://cdn.npmmirror.com/binaries/ffmpeg-static/b6.0/ffmpeg-${platform}-${arch()}`,
-    //         {
-    //           responseType: 'arraybuffer'
-    //         }
-    //       )
-    //       .catch(err => err);
-    //     if (!res || !res.data) {
-    //       console.error('ffmpeg 下载失败');
-    //       return reject(false);
-    //     }
-    //     writeFileSync(ffmpegPath, res.data);
-    //     ffmpeg = ffmpegPath;
-    //   } else {
-    //     ffmpeg = ffmpegPath;
-    //   }
-    //   if (platform === 'linux') {
-    //     console.log('添加运行权限');
-    //     execSync('chmod +x ' + ffmpegPath);
-    //   }
-    //   // 将ffmpeg添加到环境变量
-    //   AddPATH.push(dirname(ffmpeg));
-    // }
+        const res = await axios
+          .get(
+            `https://cdn.npmmirror.com/binaries/ffmpeg-static/b6.0/ffmpeg-${platform}-${arch()}`,
+            {
+              responseType: 'arraybuffer'
+            }
+          )
+          .catch(err => err);
+        if (!res || !res.data) {
+          console.error('ffmpeg 下载失败');
+          return reject(false);
+        }
+        writeFileSync(ffmpegPath, res.data);
+        ffmpeg = ffmpegPath;
+      } else {
+        ffmpeg = ffmpegPath;
+      }
+      if (platform === 'linux') {
+        console.log('添加运行权限');
+        execSync('chmod +x ' + ffmpegPath);
+      }
+      // 将ffmpeg添加到环境变量
+      AddPATH.push(dirname(ffmpeg));
+    }
 
     let ffprobe: string | undefined;
     try {
