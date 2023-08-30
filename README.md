@@ -10,4 +10,4 @@ windows: %USERPROFILE%\\.cache\ffmpeg
 
 ## 例子
 
-看 [example](./example/)
+看 [example](https://github.com/kongxiangyiren/alemon-ffmpeg/tree/master/example)

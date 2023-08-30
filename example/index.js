@@ -1,15 +1,16 @@
 const download = require('alemon-ffmpeg');
 const ffmpeg = require('fluent-ffmpeg');
-const {execSync}=require('child_process')
+const { execSync } = require('child_process');
+const { join } = require('path');
 
 async function run() {
   // 下载ffmpeg
   await download();
- console.log(execSync('ffmpeg -version',{encoding:"utf-8"})); 
- console.log(execSync('ffprobe -version',{encoding:"utf-8"})); 
-  ffmpeg('./录音.m4a')
+  console.log(execSync('ffmpeg -version', { encoding: 'utf-8' }));
+  console.log(execSync('ffprobe -version', { encoding: 'utf-8' }));
+  ffmpeg(join(__dirname, './录音.m4a'))
     .toFormat('mp3')
-    .output('./out.mp3')
+    .output(join(__dirname, './out.mp3'))
     .on('error', async err => {
       console.error('发生错误', err.toString());
     })

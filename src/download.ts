@@ -106,7 +106,9 @@ function download() {
     const PATH = process.env.PATH as string;
     const splitUp = process.platform === 'win32' ? ';' : ':';
     process.env.PATH =
-      Array.from(new Set(AddPATH)).join(splitUp) + splitUp + PATH;
+      Array.from(new Set(AddPATH)).join(splitUp) +
+      (Array.from(new Set(AddPATH)).length === 0 ? '' : splitUp) +
+      PATH;
     resolve(true);
   });
 }
