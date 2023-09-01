@@ -1,2 +1,2 @@
-import download from './download';
-export = download;
+import ffmpegDownload from './download';
+export = ffmpegDownload;

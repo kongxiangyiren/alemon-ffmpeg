@@ -4,7 +4,7 @@ import { homedir, arch } from 'os';
 import { dirname, join } from 'path';
 import axios from 'axios';
 const AddPATH: string[] = [];
-function download() {
+function ffmpegDownload(): Promise<Boolean> {
   return new Promise(async (resolve, reject) => {
     let ffmpeg: string | undefined;
     try {
@@ -113,4 +113,4 @@ function download() {
   });
 }
 
-export default download;
+export default ffmpegDownload;

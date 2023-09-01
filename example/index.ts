@@ -1,10 +1,10 @@
 import { execSync } from 'child_process';
-import download from 'alemon-ffmpeg';
+import ffmpegDownload from 'alemon-ffmpeg';
 import ffmpeg from 'fluent-ffmpeg';
 import { join } from 'path';
 async function run() {
   // 下载ffmpeg
-  await download();
+  await ffmpegDownload().catch(err=>err);
   console.log(execSync('ffmpeg -version', { encoding: 'utf-8' }));
   console.log(execSync('ffprobe -version', { encoding: 'utf-8' }));
   ffmpeg(join(__dirname, './录音.m4a'))
