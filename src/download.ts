@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { exec, execSync } from 'child_process';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { homedir, arch } from 'os';
 import { dirname, join } from 'path';
@@ -6,15 +6,7 @@ import axios from 'axios';
 const AddPATH: string[] = [];
 function ffmpegDownload(): Promise<Boolean> {
   return new Promise(async (resolve, reject) => {
-    let ffmpeg: string | undefined;
-    try {
-      ffmpeg = execSync('ffmpeg -version', {
-        encoding: 'utf-8',
-        stdio: 'ignore'
-      });
-    } catch (error) {
-      undefined;
-    }
+    let ffmpeg = (await exe('ffmpeg -version').catch(() => '')) as string;
 
     if (!ffmpeg) {
       const ffmpegPath = join(
@@ -54,15 +46,7 @@ function ffmpegDownload(): Promise<Boolean> {
       AddPATH.push(dirname(ffmpeg));
     }
 
-    let ffprobe: string | undefined;
-    try {
-      ffprobe = execSync('ffprobe -version', {
-        encoding: 'utf-8',
-        stdio: 'ignore'
-      });
-    } catch (error) {
-      undefined;
-    }
+    let ffprobe = (await exe('ffprobe -version').catch(() => '')) as string;
 
     if (!ffprobe) {
       const ffprobePath = join(
@@ -114,3 +98,15 @@ function ffmpegDownload(): Promise<Boolean> {
 }
 
 export default ffmpegDownload;
+
+function exe(command: string) {
+  return new Promise((resolve, reject) => {
+    exec(command, (err, stdout, stderr) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(stdout);
+      }
+    });
+  });
+}
